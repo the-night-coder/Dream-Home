@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ManageVendorActivity">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="@dimen/large_dp"
+            android:scaleType="centerCrop"
+            android:src="@color/hintColor"
+            app:riv_corner_radius="@dimen/large_dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/circle"
+            android:elevation="@dimen/common_dp"
+            android:transitionName="@string/logo" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/large_dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/shop_name"
+            android:textAllCaps="true"
+            android:textColor="@color/dark" />
+
+        <TextView
+            android:id="@+id/caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/large_dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/caption"
+            android:textColor="@color/hintColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/caption"
+            android:layout_marginStart="@dimen/x_large_dp"
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginEnd="@dimen/x_large_dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_dp"
+                android:background="@drawable/field_back"
+                android:drawablePadding="@dimen/large_dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:padding="@dimen/large_dp"
+                android:text="@string/website"
+                android:textColor="@color/accentColor"
+                app:drawableStartCompat="@drawable/ic_baseline_public_24" />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_dp"
+                android:background="@drawable/field_back"
+                android:drawablePadding="@dimen/large_dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:padding="@dimen/large_dp"
+                android:text="@string/contact_number"
+                android:textColor="@color/accentColor"
+                app:drawableStartCompat="@drawable/ic_baseline_call_24" />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_dp"
+                android:background="@drawable/field_back"
+                android:drawablePadding="@dimen/large_dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:padding="@dimen/large_dp"
+                android:text="@string/email"
+                android:textColor="@color/accentColor"
+                app:drawableStartCompat="@drawable/ic_baseline_email_24" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_dp"
+                android:background="@drawable/field_back"
+                android:drawablePadding="@dimen/large_dp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:padding="@dimen/large_dp"
+                android:text="@string/address"
+                android:textColor="@color/hintColor"
+                app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/x_large_dp"
+            android:background="@drawable/button_back"
+            android:backgroundTint="@color/accentColor"
+            android:elevation="@dimen/common_dp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingStart="@dimen/x_large_dp"
+            android:paddingEnd="@dimen/x_large_dp"
+            android:src="@drawable/ic_baseline_add_24"
+            android:text="@string/modify_details"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/manage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/x_large_dp"
+            android:background="@drawable/button_back"
+            android:backgroundTint="#FF6D00"
+            android:elevation="@dimen/common_dp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingStart="@dimen/x_large_dp"
+            android:paddingEnd="@dimen/x_large_dp"
+            android:src="@drawable/ic_baseline_add_24"
+            android:text="@string/manage"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</layout>

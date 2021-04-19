@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".AdminActivity">
+
+        <ImageButton
+            android:id="@+id/logOut"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/large_dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="#0091EA"
+            android:src="@drawable/ic_baseline_next_plan_24"
+            android:tint="@color/accentColor" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/x_large_dp"
+            android:background="@drawable/button_back"
+            android:backgroundTint="@color/accentColor"
+            android:elevation="@dimen/common_dp"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingStart="@dimen/x_large_dp"
+            android:paddingEnd="@dimen/x_large_dp"
+            android:src="@drawable/ic_baseline_add_24"
+            android:text="@string/create_vendor"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+</layout>

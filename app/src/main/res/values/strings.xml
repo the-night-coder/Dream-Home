@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">DreamHome</string>
+    <string name="vendors">Vendors</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="create_vendor">Create Vendor</string>
+    <string name="title">Title</string>
+    <string name="caption">Caption</string>
+    <string name="address">Address</string>
+    <string name="pincode">Pincode</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="website">Website</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="logo">Logo</string>
+    <string name="banner">Banner</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="modify_details">Modify Details</string>
+    <string name="manage">Manage</string>
+</resources>

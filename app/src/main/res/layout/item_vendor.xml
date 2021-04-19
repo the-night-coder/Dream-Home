@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/large_dp"
+        android:id="@+id/container"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/large_dp"
+        app:cardElevation="@dimen/common_dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/field_back" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/logo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/circle"
+                android:elevation="@dimen/common_dp"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/common_dp"
+                android:fontFamily="@font/roboto_bold"
+                android:singleLine="true"
+                android:text="@string/shop_name"
+                android:textAllCaps="true"
+                android:textColor="@color/dark"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/website"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/common_dp"
+                android:layout_marginBottom="@dimen/common_dp"
+                android:fontFamily="@font/roboto_regular"
+                android:maxLines="2"
+                android:text="@string/website"
+                android:textColor="@color/accentColor" />
+        </RelativeLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

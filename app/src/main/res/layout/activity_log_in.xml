@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LogInActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/field"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/sign_in" />
+
+    <LinearLayout
+        android:id="@+id/field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email"
+            style="@style/EditText"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/hintColor" />
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/EditText"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColorHint="@color/hintColor" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signIn"
+            android:layout_width="150dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/x_large_dp"
+            android:layout_marginBottom="@dimen/large_dp"
+            android:background="@drawable/button_back"
+            android:backgroundTint="#8771FF"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/sign_in"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/join"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/x_large_dp"
+        android:layout_marginBottom="@dimen/x_large_dp"
+        android:background="@drawable/button_back"
+        android:backgroundTint="#FF9771"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/create_new_account"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

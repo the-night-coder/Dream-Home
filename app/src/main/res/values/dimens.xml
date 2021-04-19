@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="x_large_dp">20dp</dimen>
+    <dimen name="large_dp">10dp</dimen>
+    <dimen name="common_dp">5dp</dimen>
+    <dimen name="button_height">45dp</dimen>
+</resources>
