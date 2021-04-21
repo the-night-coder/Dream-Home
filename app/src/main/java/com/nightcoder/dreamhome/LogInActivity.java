@@ -2,6 +2,7 @@ package com.nightcoder.dreamhome;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +28,13 @@ public class LogInActivity extends AppCompatActivity {
 
     private void init() {
         binding.signIn.setOnClickListener(v -> validate());
+        binding.join.setOnClickListener(v -> startActivity(new Intent(LogInActivity.this, RegisterActivity.class)));
         dbHelper = new DBHelper(this);
     }
 
+
     private void validate() {
-        if (!binding.email.getText().toString().contains("@")) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.getText().toString()).matches()) {
             Toast.makeText(this, "Provide valid email", Toast.LENGTH_SHORT).show();
         } else if (binding.password.getText().toString().isEmpty()) {
             Toast.makeText(this, "Provide password", Toast.LENGTH_SHORT).show();

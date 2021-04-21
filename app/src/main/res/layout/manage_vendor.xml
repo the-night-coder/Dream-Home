@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/x_large_dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/manage_vendor"
+            android:textAllCaps="true"
+            android:textColor="@color/dark" />
+
+        <RadioGroup
+            android:id="@+id/group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_dp"
+            android:layout_marginEnd="@dimen/large_dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/active"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/active"
+                android:textColor="#00C853" />
+
+            <RadioButton
+                android:id="@+id/suspend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/suspend"
+                android:textColor="#FFAB00" />
+
+            <RadioButton
+                android:id="@+id/deactivate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/deactivate"
+                android:textColor="#DD2C00" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/reason"
+            style="@style/EditText"
+            android:layout_marginTop="@dimen/large_dp"
+            android:hint="@string/reason_for_suspend"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/hintColor"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cancel"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="@dimen/large_dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_back"
+                android:backgroundTint="#0064A1"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/cancel" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_height"
+                android:layout_margin="@dimen/large_dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_back"
+                android:backgroundTint="#00913C"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/save" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".EditProductActivity">
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/x_large_dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/edit_product"
+            android:textColor="@color/dark" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/header_title"
+            android:background="@color/line_color" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/addProduct"
+            android:layout_below="@id/header_title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/click_to_add_image"
+                        android:textColor="@color/hintColor" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/image"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:transitionName="image"
+                        android:layout_margin="@dimen/x_large_dp"
+                        android:src="@drawable/field_back"
+                        app:riv_corner_radius="@dimen/large_dp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="@dimen/common_dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/title"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/title"
+                    style="@style/EditText"
+                    android:hint="@string/title"
+                    android:inputType="text"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="@dimen/common_dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/description"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/description"
+                    style="@style/EditText"
+                    android:hint="@string/description"
+                    android:inputType="textShortMessage"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="@dimen/common_dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/long_description"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/logDescription"
+                    style="@style/EditText"
+                    android:gravity="start"
+                    android:hint="@string/long_description"
+                    android:inputType="textMultiLine"
+                    android:minHeight="100dp"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="@dimen/common_dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/price_per_unit"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/price"
+                    style="@style/EditText"
+                    android:hint="@string/price_per_unit"
+                    android:inputType="numberSigned"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="@dimen/common_dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/unit"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/unit"
+                    style="@style/EditText"
+                    android:hint="@string/unit"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="@dimen/common_dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/maximum_quantity_order"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/qTo"
+                    style="@style/EditText"
+                    android:hint="@string/maximum_quantity_order"
+                    android:inputType="numberSigned"
+                    android:textColorHint="@color/hintColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="@dimen/common_dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/stock"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/stock"
+                    style="@style/EditText"
+                    android:hint="@string/stock"
+                    android:inputType="numberSigned"
+                    android:textColorHint="@color/hintColor" />
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/addProduct"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="?android:selectableItemBackground"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="@string/edit_product"
+                android:textColor="#508B00" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

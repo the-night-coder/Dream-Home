@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.nightcoder.dreamhome.Adapters.VendorAdapter;
 import com.nightcoder.dreamhome.DataSupports.DBHelper;
+import com.nightcoder.dreamhome.Supports.Prefs;
 import com.nightcoder.dreamhome.databinding.ActivityAdminBinding;
 
 public class AdminActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class AdminActivity extends AppCompatActivity {
         binding.add.setOnClickListener(v -> addVendor());
         dbHelper = new DBHelper(this);
         binding.recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        setVendors();
+        binding.logOut.setOnClickListener(v -> logOut());
     }
 
     private void addVendor() {
@@ -39,7 +40,16 @@ public class AdminActivity extends AppCompatActivity {
         binding.recyclerView.setAdapter(adapter);
     }
 
-    private void logOut(){
+    private void logOut() {
+        Prefs.putString(this, Prefs.KEY_USERNAME, null);
+        startActivity(new Intent(this, LogInActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+        finish();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setVendors();
     }
 }

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".EditVendorActivity">
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/x_large_dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/create_vendor"
+            android:textColor="@color/dark" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/header_title"
+            android:background="@color/line_color" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/addVendor"
+            android:layout_below="@id/header_title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="@dimen/x_large_dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/field_back"
+                        app:riv_corner_radius="@dimen/x_large_dp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/logo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle"
+                        android:elevation="@dimen/common_dp"
+                        android:padding="3dp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/x_large_dp"
+                    android:layout_marginEnd="@dimen/x_large_dp"
+                    android:layout_marginBottom="@dimen/large_dp">
+
+                    <Button
+                        android:id="@+id/logoButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/large_dp"
+                        android:layout_marginEnd="@dimen/large_dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#6741D3"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/logo" />
+
+                    <Button
+                        android:id="@+id/bannerButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/large_dp"
+                        android:layout_marginEnd="@dimen/large_dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#059741"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/banner" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/title"
+                    style="@style/EditText"
+                    android:hint="@string/title"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/caption"
+                    style="@style/EditText"
+                    android:hint="@string/caption"
+                    android:inputType="text"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/address"
+                    style="@style/EditText"
+                    android:gravity="start"
+                    android:hint="@string/address"
+                    android:inputType="textMultiLine"
+                    android:minHeight="100dp"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/pincode"
+                    style="@style/EditText"
+                    android:hint="@string/pincode"
+                    android:inputType="number"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/number"
+                    style="@style/EditText"
+                    android:hint="@string/contact_number"
+                    android:inputType="number"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/website"
+                    style="@style/EditText"
+                    android:hint="@string/website"
+                    android:inputType="textWebEditText"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/email"
+                    style="@style/EditText"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/password"
+                    style="@style/EditText"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/hintColor" />
+
+                <EditText
+                    android:id="@+id/ConfirmPass"
+                    style="@style/EditText"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/hintColor" />
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/addVendor"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="?android:selectableItemBackground"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="@string/create_vendor"
+                android:textColor="#508B00" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

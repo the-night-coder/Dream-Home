@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DreamHome">
-        <activity android:name=".ManageVendorActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".EditVendorActivity" />
+        <activity android:name=".EditProductActivity" />
+        <activity android:name=".ManageProductActivity" />
+        <activity android:name=".AddProductActivity" />
+        <activity android:name=".ManageVendorActivity" />
         <activity android:name=".VendorActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".LogInActivity" />

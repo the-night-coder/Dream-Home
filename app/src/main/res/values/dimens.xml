@@ -4,4 +4,6 @@
     <dimen name="large_dp">10dp</dimen>
     <dimen name="common_dp">5dp</dimen>
     <dimen name="button_height">45dp</dimen>
+    <dimen name="common_margin">5dp</dimen>
+    <dimen name="large_margin">10dp</dimen>
 </resources>

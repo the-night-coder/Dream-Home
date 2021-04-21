@@ -17,20 +17,23 @@ import com.nightcoder.dreamhome.Models.User;
 import com.nightcoder.dreamhome.Models.Vendor;
 import com.nightcoder.dreamhome.Supports.Constants;
 import com.nightcoder.dreamhome.Supports.RealPathUtil;
-import com.nightcoder.dreamhome.databinding.ActivityAddVendorBinding;
+import com.nightcoder.dreamhome.databinding.ActivityEditVendorBinding;
 import com.squareup.picasso.Picasso;
 
-public class AddVendorActivity extends AppCompatActivity {
+import java.io.File;
 
-    private ActivityAddVendorBinding binding;
-    private String logoUri;
+public class EditVendorActivity extends AppCompatActivity {
+
     private String bannerUri;
+    private String logoUri;
+    private ActivityEditVendorBinding binding;
     private DBHelper dbHelper;
+    public static Vendor vendor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_vendor);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_vendor);
         init();
     }
 
@@ -39,6 +42,22 @@ public class AddVendorActivity extends AppCompatActivity {
         binding.logoButton.setOnClickListener(v -> getImage(101));
         binding.bannerButton.setOnClickListener(v -> getImage(100));
         dbHelper = new DBHelper(this);
+
+        binding.title.setText(vendor.title);
+        binding.address.setText(vendor.address);
+        binding.password.setText(vendor.password);
+        binding.ConfirmPass.setText(vendor.password);
+        binding.caption.setText(vendor.description);
+        binding.pincode.setText(vendor.pincode);
+        binding.number.setText(vendor.number);
+        binding.email.setText(vendor.email);
+        binding.website.setText(vendor.website);
+
+        bannerUri = vendor.banner;
+        logoUri = vendor.imageUri;
+
+        Picasso.get().load(new File(logoUri)).into(binding.logo);
+        Picasso.get().load(new File(bannerUri)).into(binding.banner);
     }
 
     private void validate() {

@@ -8,6 +8,11 @@
         android:background="@color/white"
         tools:context=".AdminActivity">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <ImageButton
             android:id="@+id/logOut"
             android:layout_width="50dp"
@@ -18,12 +23,6 @@
             android:backgroundTint="#0091EA"
             android:src="@drawable/ic_baseline_next_plan_24"
             android:tint="@color/accentColor" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add"
