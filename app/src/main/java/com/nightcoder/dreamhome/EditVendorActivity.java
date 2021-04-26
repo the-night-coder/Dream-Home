@@ -85,30 +85,26 @@ public class EditVendorActivity extends AppCompatActivity {
     }
 
     private void createVendor() {
-        if (dbHelper.getUser(binding.email.getText().toString()) == null) {
-            Vendor vendor = new Vendor();
-            vendor.title = binding.title.getText().toString();
-            vendor.description = binding.caption.getText().toString();
-            vendor.address = binding.address.getText().toString();
-            vendor.pincode = binding.pincode.getText().toString();
-            vendor.number = binding.number.getText().toString();
-            vendor.email = binding.email.getText().toString();
-            vendor.password = binding.password.getText().toString();
-            vendor.website = binding.website.getText().toString();
-            vendor.imageUri = logoUri;
-            vendor.banner = bannerUri;
-            vendor.status = Constants.ACTIVE;
-            User user = new User();
-            user.userType = Constants.TYPE_VENDOR;
-            user.password = binding.password.getText().toString();
-            user.email = binding.email.getText().toString();
-            dbHelper.insertUser(user);
-            dbHelper.insertVendor(vendor);
-            dbHelper.close();
-            finish();
-        } else {
-            Toast.makeText(this, "Vendor already exist", Toast.LENGTH_SHORT).show();
-        }
+        Vendor vendor = new Vendor();
+        vendor.title = binding.title.getText().toString();
+        vendor.description = binding.caption.getText().toString();
+        vendor.address = binding.address.getText().toString();
+        vendor.pincode = binding.pincode.getText().toString();
+        vendor.number = binding.number.getText().toString();
+        vendor.email = binding.email.getText().toString();
+        vendor.password = binding.password.getText().toString();
+        vendor.website = binding.website.getText().toString();
+        vendor.imageUri = logoUri;
+        vendor.banner = bannerUri;
+        vendor.status = Constants.ACTIVE;
+        User user = new User();
+        user.userType = Constants.TYPE_VENDOR;
+        user.password = binding.password.getText().toString();
+        user.email = binding.email.getText().toString();
+        dbHelper.insertUser(user);
+        dbHelper.insertVendor(vendor);
+        dbHelper.close();
+        finish();
     }
 
     private void getImage(int code) {

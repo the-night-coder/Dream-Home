@@ -17,9 +17,12 @@ import com.nightcoder.dreamhome.DataSupports.DBHelper;
 import com.nightcoder.dreamhome.Models.Product;
 import com.nightcoder.dreamhome.Supports.Constants;
 import com.nightcoder.dreamhome.Supports.Prefs;
+import com.nightcoder.dreamhome.Supports.RandomString;
 import com.nightcoder.dreamhome.Supports.RealPathUtil;
 import com.nightcoder.dreamhome.databinding.ActivityAddProductBinding;
 import com.squareup.picasso.Picasso;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AddProductActivity extends AppCompatActivity {
 
@@ -92,6 +95,8 @@ public class AddProductActivity extends AppCompatActivity {
         product.quantityTo = Integer.parseInt(binding.qTo.getText().toString());
         product.price = Integer.parseInt(binding.price.getText().toString());
         product.stock = Integer.parseInt(binding.stock.getText().toString());
+        RandomString gen = new RandomString(8, ThreadLocalRandom.current());
+        product.ref = gen.nextString();
 
         dbHelper.addProduct(product);
         Toast.makeText(this, "Product added", Toast.LENGTH_SHORT).show();

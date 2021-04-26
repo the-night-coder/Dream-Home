@@ -8,9 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.nightcoder.dreamhome.Models.Order;
 import com.nightcoder.dreamhome.Models.Product;
 import com.nightcoder.dreamhome.Models.User;
 import com.nightcoder.dreamhome.Models.Vendor;
+import com.nightcoder.dreamhome.Models.Wishlist;
 import com.nightcoder.dreamhome.Supports.Constants;
 import com.nightcoder.dreamhome.Supports.Tables;
 
@@ -35,7 +37,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 "address TEXT, pincode TEXT, number TEXT, website TEXT, photoUrl TEXT, banner TEXT, status INTEGER, extra TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS " + Tables.PRODUCT
                 + "(_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT, description TEXT, longDesc TEXT, imageUrl TEXT, " +
-                "vendor TEXT, unit TEXT, stock INTEGER, price INTEGER, qTo INTEGER)");
+                "vendor TEXT, unit TEXT, ref TEXT, stock INTEGER, price INTEGER, qTo INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS "
+                + Tables.ORDERS + "(_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, quantity INTEGER, productId INTEGER, timestamp LONG, " +
+                "status INTEGER, address TEXT, number TEXT, landmark TEXT, email TEXT, name TEXT, vendor TEXT, ref TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + Tables.WISHLIST + "(_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, proId INTEGER, ref TEXT, user TEXT)");
     }
 
     @Override
@@ -44,7 +50,64 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Tables.USER_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + Tables.VENDOR_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + Tables.PRODUCT);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.ORDERS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.WISHLIST);
         onCreate(db);
+    }
+
+    public Cursor getOrders(String vendor) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            return db.rawQuery("SELECT * FROM " + Tables.ORDERS + " WHERE vendor='" + vendor + "'", null);
+        } catch (SQLiteException e) {
+            return null;
+        }
+    }
+
+    public Cursor getOrders(String vendor, String user) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            return db.rawQuery("SELECT * FROM " + Tables.ORDERS + " WHERE vendor='" + vendor + "' AND email='" + user + "'", null);
+        } catch (SQLiteException e) {
+            return null;
+        }
+    }
+
+    public Cursor getWishlist(String user) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            return db.rawQuery("SELECT * FROM " + Tables.WISHLIST + " WHERE user='" + user + "'", null);
+        } catch (SQLiteException e) {
+            return null;
+        }
+    }
+
+    public boolean checkWishlist(String user, String key) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM " + Tables.WISHLIST + " WHERE user='" + user + "' AND ref='" + key + "'", null);
+            if (cursor != null && cursor.getCount() != 0) {
+                cursor.close();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLiteException e) {
+            return false;
+        }
+    }
+
+    public void addWishlist(Wishlist wishlist) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("INSERT INTO " + Tables.WISHLIST + " VALUES(?," + wishlist.proId + ",'" + wishlist.ref + "','" + wishlist.user + "')");
+    }
+
+    public void addOrder(Order order) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("INSERT INTO " + Tables.ORDERS
+                + " VALUES(?," + order.quantity + "," + order.productId + "," + order.timestamp
+                + "," + order.status + ",'" + order.address + "','" + order.number + "','"
+                + order.landmark + "','" + order.email + "','" + order.name + "','" + order.vendor + "','" + order.key + "')");
     }
 
     public User getUserDetails(String email) {
@@ -122,6 +185,20 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public Cursor getVendorsForUser() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            return db.rawQuery("SELECT * FROM " + Tables.VENDOR_DETAILS + " WHERE status=" + Constants.ACTIVE, null);
+        } catch (SQLiteException e) {
+            return null;
+        }
+    }
+
+    public void updateOrderStatus(int status, int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("UPDATE " + Tables.ORDERS + " SET status=" + status + " WHERE _id=" + id);
+    }
+
     public Vendor getVendor(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
@@ -153,15 +230,14 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         db.execSQL("INSERT OR REPLACE INTO " + Tables.PRODUCT + " VALUES(" + product.productId + ",'" + product.name
                 + "','" + product.description + "','" + product.longDescribe + "','" + product.thumbnailUri + "','"
-                + product.vendorId + "','" + product.unit + "'," + product.stock + "," + product.price + "," + product.quantityTo + ")");
+                + product.vendorId + "','" + product.unit + "','" + product.ref + "'," + product.stock + "," + product.price + "," + product.quantityTo + ")");
     }
 
     public void addProduct(Product product) {
         SQLiteDatabase db = this.getReadableDatabase();
         db.execSQL("INSERT INTO " + Tables.PRODUCT + " VALUES(?,'" + product.name
                 + "','" + product.description + "','" + product.longDescribe + "','" + product.thumbnailUri + "','"
-                + product.vendorId + "','" + product.unit + "'," + product.stock + "," + product.price + "," + product.quantityTo + ")");
-
+                + product.vendorId + "','" + product.unit + "','" + product.ref + "'," + product.stock + "," + product.price + "," + product.quantityTo + ")");
     }
 
     public ArrayList<Product> getProducts(String vendor) {
@@ -178,6 +254,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     product.longDescribe = cursor.getString(cursor.getColumnIndex("longDesc"));
                     product.vendorId = cursor.getString(cursor.getColumnIndex("vendor"));
                     product.thumbnailUri = cursor.getString(cursor.getColumnIndex("imageUrl"));
+                    product.ref = cursor.getString(cursor.getColumnIndex("ref"));
                     product.unit = cursor.getString(cursor.getColumnIndex("unit"));
                     product.price = cursor.getInt(cursor.getColumnIndex("price"));
                     product.stock = cursor.getInt(cursor.getColumnIndex("stock"));
@@ -187,6 +264,34 @@ public class DBHelper extends SQLiteOpenHelper {
                 } while (cursor.moveToNext());
                 cursor.close();
                 return products;
+            } else {
+                return null;
+            }
+        } catch (SQLiteException e) {
+            return null;
+        }
+    }
+
+    public Product getProduct(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM " + Tables.PRODUCT + " WHERE _id='" + id + "'", null);
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                Product product = new Product();
+                product.name = cursor.getString(cursor.getColumnIndex("name"));
+                product.description = cursor.getString(cursor.getColumnIndex("description"));
+                product.longDescribe = cursor.getString(cursor.getColumnIndex("longDesc"));
+                product.vendorId = cursor.getString(cursor.getColumnIndex("vendor"));
+                product.thumbnailUri = cursor.getString(cursor.getColumnIndex("imageUrl"));
+                product.ref = cursor.getString(cursor.getColumnIndex("ref"));
+                product.unit = cursor.getString(cursor.getColumnIndex("unit"));
+                product.price = cursor.getInt(cursor.getColumnIndex("price"));
+                product.stock = cursor.getInt(cursor.getColumnIndex("stock"));
+                product.quantityTo = cursor.getInt(cursor.getColumnIndex("qTo"));
+                product.productId = cursor.getInt(cursor.getColumnIndex("_id"));
+                cursor.close();
+                return product;
             } else {
                 return null;
             }

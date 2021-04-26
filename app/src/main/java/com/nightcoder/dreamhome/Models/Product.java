@@ -10,6 +10,7 @@ public class Product {
     public int quantityTo;
     public String vendorId;
     public String longDescribe;
+    public String ref;
     public int productId;
     public String thumbnailUri;
 

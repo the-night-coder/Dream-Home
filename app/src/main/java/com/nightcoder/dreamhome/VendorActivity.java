@@ -38,6 +38,7 @@ public class VendorActivity extends AppCompatActivity {
         Picasso.get().load(new File(vendor.imageUri)).into(binding.profile);
 
         binding.profile.setOnClickListener(v -> logOut());
+        binding.list.setOnClickListener(v -> startActivity(new Intent(this, OrderActivity.class)));
     }
 
     private void logOut() {

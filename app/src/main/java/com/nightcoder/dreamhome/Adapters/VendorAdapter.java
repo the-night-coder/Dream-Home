@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nightcoder.dreamhome.AdminActivity;
 import com.nightcoder.dreamhome.ManageVendorActivity;
 import com.nightcoder.dreamhome.Models.Vendor;
+import com.nightcoder.dreamhome.ProductsActivity;
 import com.nightcoder.dreamhome.R;
 import com.nightcoder.dreamhome.databinding.ItemVendorBinding;
 import com.squareup.picasso.Picasso;
@@ -67,6 +68,11 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.ViewHolder
                 ActivityOptionsCompat options = ActivityOptionsCompat.
                         makeSceneTransitionAnimation((Activity) context, holder.binding.logo, "Logo");
                 context.startActivity(new Intent(context, ManageVendorActivity.class), options.toBundle());
+            } else {
+                ProductsActivity.vendor = vendor;
+                ActivityOptionsCompat options = ActivityOptionsCompat.
+                        makeSceneTransitionAnimation((Activity) context, holder.binding.logo, "Logo");
+                context.startActivity(new Intent(context, ProductsActivity.class), options.toBundle());
             }
         });
 

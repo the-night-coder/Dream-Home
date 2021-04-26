@@ -15,4 +15,8 @@ public class Constants {
     public static final int SUSPEND = 1;
     public static final int ACTIVE = 0;
     public static final int DEACTIVATE = 2;
+
+    public static final int ACCEPT = 1;
+    public static final int REJECT = 2;
+    public static final int PENDING = 0;
 }

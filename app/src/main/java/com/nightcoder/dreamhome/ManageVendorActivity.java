@@ -11,6 +11,8 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.nightcoder.dreamhome.Models.Vendor;
+import com.nightcoder.dreamhome.Supports.Constants;
+import com.nightcoder.dreamhome.Supports.Prefs;
 import com.nightcoder.dreamhome.databinding.ActivityManageVendoBinding;
 import com.nightcoder.dreamhome.databinding.ManageVendorBinding;
 import com.squareup.picasso.Picasso;
@@ -46,6 +48,14 @@ public class ManageVendorActivity extends AppCompatActivity {
             EditVendorActivity.vendor = vendor;
             startActivity(new Intent(ManageVendorActivity.this, EditVendorActivity.class));
         });
+
+        if (Prefs.getString(this, Prefs.KEY_USERNAME, null).equals(Constants.ADMIN)) {
+            binding.manage.setVisibility(View.VISIBLE);
+            binding.edit.setVisibility(View.VISIBLE);
+        } else {
+            binding.manage.setVisibility(View.GONE);
+            binding.edit.setVisibility(View.GONE);
+        }
     }
 
     private void manage() {
