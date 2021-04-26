@@ -37,15 +37,11 @@ public class VendorActivity extends AppCompatActivity {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Picasso.get().load(new File(vendor.imageUri)).into(binding.profile);
 
-        binding.profile.setOnClickListener(v -> logOut());
+        binding.profile.setOnClickListener(v -> {
+            ManageVendorActivity.vendor = vendor;
+            startActivity(new Intent(this, ManageVendorActivity.class));
+        });
         binding.list.setOnClickListener(v -> startActivity(new Intent(this, OrderActivity.class)));
-    }
-
-    private void logOut() {
-        Prefs.putString(this, Prefs.KEY_USERNAME, null);
-        startActivity(new Intent(this, LogInActivity.class)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
-        finish();
     }
 
     private void addProduct() {

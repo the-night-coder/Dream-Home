@@ -82,10 +82,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
         if (order.status == Constants.PENDING) {
             holder.binding.status.setText(Html.fromHtml("<b>Status:</b> Pending"));
+            holder.binding.status.setTextColor(context.getResources().getColor(R.color.yellow, context.getTheme()));
         } else if (order.status == Constants.ACCEPT) {
             holder.binding.status.setText(Html.fromHtml("<b>Status:</b> Accepted"));
+            holder.binding.status.setTextColor(context.getResources().getColor(R.color.green, context.getTheme()));
         } else {
             holder.binding.status.setText(Html.fromHtml("<b>Status:</b> Rejected"));
+            holder.binding.status.setTextColor(context.getResources().getColor(R.color.red, context.getTheme()));
         }
         holder.binding.time.setText(Time.getTimeFullText(order.timestamp));
 

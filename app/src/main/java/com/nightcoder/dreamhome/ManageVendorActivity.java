@@ -56,6 +56,22 @@ public class ManageVendorActivity extends AppCompatActivity {
             binding.manage.setVisibility(View.GONE);
             binding.edit.setVisibility(View.GONE);
         }
+
+        if (Prefs.getInt(this, Prefs.USER_TYPE, Constants.TYPE_VENDOR) == Constants.TYPE_VENDOR) {
+            binding.edit.setVisibility(View.VISIBLE);
+            binding.logOut.setVisibility(View.VISIBLE);
+        }
+
+        binding.logOut.setOnClickListener(v -> {
+            logOut();
+        });
+    }
+
+    private void logOut() {
+        Prefs.putString(this, Prefs.KEY_USERNAME, null);
+        startActivity(new Intent(this, LogInActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+        finish();
     }
 
     private void manage() {
