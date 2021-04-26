@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
@@ -14,11 +16,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.nightcoder.dreamhome.DataSupports.DBHelper;
 import com.nightcoder.dreamhome.EditProductActivity;
-import com.nightcoder.dreamhome.ManageVendorActivity;
 import com.nightcoder.dreamhome.Models.Product;
 import com.nightcoder.dreamhome.OpenProductActivity;
 import com.nightcoder.dreamhome.R;
+import com.nightcoder.dreamhome.Supports.Tables;
 import com.nightcoder.dreamhome.VendorActivity;
 import com.nightcoder.dreamhome.databinding.ItemProductBinding;
 import com.nightcoder.dreamhome.databinding.ManageProductBinding;
@@ -31,10 +34,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     private final ArrayList<Product> products;
     private Context context;
+    private DBHelper dbHelper;
 
     public ProductAdapter(Context context, ArrayList<Product> products) {
         this.products = products;
         this.context = context;
+        this.dbHelper = new DBHelper(context);
     }
 
     @NonNull
@@ -64,6 +69,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     ActivityOptionsCompat options = ActivityOptionsCompat.
                             makeSceneTransitionAnimation((Activity) context, holder.binding.image, "image");
                     context.startActivity(new Intent(context, EditProductActivity.class), options.toBundle());
+                });
+                binding.delete.setOnClickListener(v1 -> {
+                    dialog.cancel();
+                    SQLiteDatabase db = dbHelper.getReadableDatabase();
+                    db.execSQL("DELETE FROM " + Tables.PRODUCT + " WHERE _id=" + product.productId);
+                    Toast.makeText(context, "Deleted please refresh", Toast.LENGTH_SHORT).show();
                 });
                 dialog.show();
             } else {

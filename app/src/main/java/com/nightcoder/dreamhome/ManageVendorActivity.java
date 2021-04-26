@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.nightcoder.dreamhome.DataSupports.DBHelper;
 import com.nightcoder.dreamhome.Models.Vendor;
 import com.nightcoder.dreamhome.Supports.Constants;
 import com.nightcoder.dreamhome.Supports.Prefs;
@@ -23,6 +25,7 @@ public class ManageVendorActivity extends AppCompatActivity {
 
     private ActivityManageVendoBinding binding;
     public static Vendor vendor;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class ManageVendorActivity extends AppCompatActivity {
         binding.address.setText(vendor.address + ", " + vendor.pincode);
         binding.number.setText(vendor.number);
         binding.email.setText(vendor.email);
+
+        dbHelper = new DBHelper(this);
 
         Picasso.get().load(new File(vendor.imageUri)).into(binding.logo);
         Picasso.get().load(new File(vendor.banner)).into(binding.banner);
@@ -57,14 +62,12 @@ public class ManageVendorActivity extends AppCompatActivity {
             binding.edit.setVisibility(View.GONE);
         }
 
-        if (Prefs.getInt(this, Prefs.USER_TYPE, Constants.TYPE_VENDOR) == Constants.TYPE_VENDOR) {
+        if (Prefs.getInt(this, Prefs.USER_TYPE, Constants.TYPE_USER) == Constants.TYPE_VENDOR) {
             binding.edit.setVisibility(View.VISIBLE);
             binding.logOut.setVisibility(View.VISIBLE);
         }
 
-        binding.logOut.setOnClickListener(v -> {
-            logOut();
-        });
+        binding.logOut.setOnClickListener(v -> logOut());
     }
 
     private void logOut() {
@@ -88,7 +91,14 @@ public class ManageVendorActivity extends AppCompatActivity {
             }
         });
         binding.save.setOnClickListener(v -> {
-
+            if (binding.group.getCheckedRadioButtonId() == R.id.active) {
+                dbHelper.updateVendorStatus(vendor.email, Constants.DEACTIVATE, null);
+                Toast.makeText(this, "Vendor visible for users", Toast.LENGTH_SHORT).show();
+            } else if (!binding.reason.getText().toString().isEmpty()) {
+                dbHelper.updateVendorStatus(vendor.email, Constants.DEACTIVATE, binding.reason.getText().toString());
+                Toast.makeText(this, "Vendor invisible for users", Toast.LENGTH_SHORT).show();
+            }
+            dialog.cancel();
         });
 
         dialog.show();

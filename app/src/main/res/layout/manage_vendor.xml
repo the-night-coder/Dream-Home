@@ -35,15 +35,6 @@
                 android:textColor="#00C853" />
 
             <RadioButton
-                android:id="@+id/suspend"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto_bold"
-                android:text="@string/suspend"
-                android:textColor="#FFAB00" />
-
-            <RadioButton
                 android:id="@+id/deactivate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

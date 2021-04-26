@@ -64,6 +64,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateVendorStatus(String vendor, int status) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("UPDATE " + Tables.VENDOR_DETAILS + " SET status=" + status + " WHERE email='" + vendor + "'");
+    }
+
+    public void updateVendorStatus(String vendor, int status, String extra) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("UPDATE " + Tables.VENDOR_DETAILS + " SET status=" + status + ", extra='" + extra + "' WHERE email='" + vendor + "'");
+    }
+
     public Cursor getOrders(String vendor, String user) {
         SQLiteDatabase db = this.getReadableDatabase();
         try {

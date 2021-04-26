@@ -42,6 +42,11 @@ public class VendorActivity extends AppCompatActivity {
             startActivity(new Intent(this, ManageVendorActivity.class));
         });
         binding.list.setOnClickListener(v -> startActivity(new Intent(this, OrderActivity.class)));
+
+        binding.refresh.setOnRefreshListener(() -> {
+            setProducts();
+            binding.refresh.setRefreshing(false);
+        });
     }
 
     private void addProduct() {

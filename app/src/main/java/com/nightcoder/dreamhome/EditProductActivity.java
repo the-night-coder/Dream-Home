@@ -107,6 +107,7 @@ public class EditProductActivity extends AppCompatActivity {
         product.price = Integer.parseInt(binding.price.getText().toString());
         product.stock = Integer.parseInt(binding.stock.getText().toString());
         product.productId = EditProductActivity.product.productId;
+        product.ref = EditProductActivity.product.ref;
 
         dbHelper.editProduct(product);
         Toast.makeText(this, "Product modified", Toast.LENGTH_SHORT).show();
