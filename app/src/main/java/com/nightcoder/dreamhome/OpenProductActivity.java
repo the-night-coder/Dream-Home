@@ -48,7 +48,7 @@ public class OpenProductActivity extends AppCompatActivity {
         Picasso.get().load(new File(vendor.imageUri)).into(binding.logo);
         binding.shoName.setText(vendor.title);
         binding.add.setOnClickListener(v -> {
-            if (quantity <= product.quantityTo) {
+            if (quantity < product.quantityTo) {
                 quantity++;
                 update();
             }
@@ -62,9 +62,11 @@ public class OpenProductActivity extends AppCompatActivity {
         });
 
         binding.buy.setOnClickListener(v -> {
-            PurchaseActivity.product = product;
-            PurchaseActivity.quantity = quantity;
-            startActivity(new Intent(OpenProductActivity.this, PurchaseActivity.class));
+            if (quantity <= product.stock) {
+                PurchaseActivity.product = product;
+                PurchaseActivity.quantity = quantity;
+                startActivity(new Intent(OpenProductActivity.this, PurchaseActivity.class));
+            } else Toast.makeText(this, "Out of stock", Toast.LENGTH_SHORT).show();
         });
 
         binding.wish.setEnabled(!dbHelper.checkWishlist(Prefs.getString(

@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.nightcoder.dreamhome.DataSupports.DBHelper;
 import com.nightcoder.dreamhome.EditProductActivity;
+import com.nightcoder.dreamhome.Fragments.WishlistFragment;
+import com.nightcoder.dreamhome.Interface.OnRefresh;
 import com.nightcoder.dreamhome.Models.Product;
 import com.nightcoder.dreamhome.Models.Wishlist;
 import com.nightcoder.dreamhome.OpenProductActivity;
@@ -35,11 +37,13 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
     private final Cursor cursor;
     private final Context context;
     private final DBHelper dbHelper;
+    private OnRefresh onRefresh;
 
-    public WishlistAdapter(Context context, Cursor cursor) {
+    public WishlistAdapter(WishlistFragment fragment, Context context, Cursor cursor) {
         this.cursor = cursor;
         this.context = context;
         this.dbHelper = new DBHelper(context);
+        this.onRefresh = (OnRefresh) fragment;
     }
 
     @NonNull
@@ -88,7 +92,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
         holder.binding.delete.setOnClickListener(v -> {
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             db.execSQL("DELETE FROM " + Tables.WISHLIST + " WHERE _id=" + wishlist._id);
-            notifyItemRemoved(position);
+            onRefresh.onRefresh();
         });
     }
 

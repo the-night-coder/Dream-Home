@@ -164,6 +164,7 @@
                     android:id="@+id/logo"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_margin="@dimen/large_dp"
                     android:background="@drawable/circle"
                     android:elevation="@dimen/common_dp" />
 

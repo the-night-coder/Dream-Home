@@ -15,10 +15,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.nightcoder.dreamhome.Adapters.WishlistAdapter;
 import com.nightcoder.dreamhome.DataSupports.DBHelper;
+import com.nightcoder.dreamhome.Interface.OnRefresh;
 import com.nightcoder.dreamhome.R;
 import com.nightcoder.dreamhome.Supports.Prefs;
 
-public class WishlistFragment extends Fragment {
+public class WishlistFragment extends Fragment implements OnRefresh {
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
@@ -57,12 +58,17 @@ public class WishlistFragment extends Fragment {
     }
 
     private void setProducts() {
-        WishlistAdapter adapter = new WishlistAdapter(context, dbHelper.getWishlist(Prefs.getString(context, Prefs.KEY_USERNAME, null)));
+        WishlistAdapter adapter = new WishlistAdapter(this, context, dbHelper.getWishlist(Prefs.getString(context, Prefs.KEY_USERNAME, null)));
         recyclerView.setAdapter(adapter);
         if (adapter.getItemCount() == 0) {
             noItems.setVisibility(View.VISIBLE);
         } else {
             noItems.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        setProducts();
     }
 }
