@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +59,8 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.ViewHolder
         vendor.banner = cursor.getString(cursor.getColumnIndex("banner"));
 
         assert holder.binding != null;
-        Picasso.get().load(new File(vendor.imageUri)).into(holder.binding.logo);
+        Picasso.get().load(Uri.parse(vendor.imageUri)).into(holder.binding.logo);
+        Log.d("Uri", vendor.imageUri);
         Picasso.get().load(new File(vendor.banner)).into(holder.binding.banner);
         holder.binding.title.setText(vendor.title);
         holder.binding.website.setText(vendor.website);

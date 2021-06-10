@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
+                    android:layout_centerInParent="true"
                     android:text="@string/no_items"
                     android:textAllCaps="true"
                     android:textColor="@color/hintColor"
