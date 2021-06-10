@@ -29,18 +29,23 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + Tables.USERS
                 + "(email TEXT PRIMARY KEY UNIQUE, password TEXT, userType INTEGER)");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS " + Tables.USER_DETAILS
                 + "(email TEXT PRIMARY KEY UNIQUE, password TEXT, fullName TEXT, photoUrl TEXT, userType INTEGER)");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS " + Tables.VENDOR_DETAILS
                 + " (email TEXT PRIMARY KEY UNIQUE, " +
                 "password TEXT, title TEXT, description TEXT, " +
                 "address TEXT, pincode TEXT, number TEXT, website TEXT, photoUrl TEXT, banner TEXT, status INTEGER, extra TEXT)");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS " + Tables.PRODUCT
                 + "(_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT, description TEXT, longDesc TEXT, imageUrl TEXT, " +
                 "vendor TEXT, unit TEXT, ref TEXT, stock INTEGER, price INTEGER, qTo INTEGER)");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS "
                 + Tables.ORDERS + "(_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, quantity INTEGER, productId INTEGER, timestamp LONG, " +
                 "status INTEGER, address TEXT, number TEXT, landmark TEXT, email TEXT, name TEXT, vendor TEXT, ref TEXT)");
+
         db.execSQL("CREATE TABLE IF NOT EXISTS " + Tables.WISHLIST + "(_id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE, proId INTEGER, ref TEXT, user TEXT)");
     }
 

@@ -18,6 +18,11 @@ public class OrderActivity extends AppCompatActivity {
     private DBHelper dbHelper;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_order);
