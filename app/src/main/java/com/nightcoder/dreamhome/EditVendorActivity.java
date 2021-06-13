@@ -75,6 +75,8 @@ public class EditVendorActivity extends AppCompatActivity {
             Toast.makeText(this, "Provide valid pincode", Toast.LENGTH_SHORT).show();
         } else if (!Patterns.PHONE.matcher(binding.number.getText().toString()).matches()) {
             Toast.makeText(this, "Provide valid phone number", Toast.LENGTH_SHORT).show();
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.getText().toString()).matches()) {
+            Toast.makeText(this, "Provide valid email", Toast.LENGTH_SHORT).show();
         } else if (binding.password.getText().toString().length() < 8) {
             Toast.makeText(this, "Password must contains at least 8 character", Toast.LENGTH_SHORT).show();
         } else if (!binding.password.getText().toString().equals(binding.ConfirmPass.getText().toString())) {
